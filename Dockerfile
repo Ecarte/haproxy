@@ -8,9 +8,9 @@ RUN apk add --update \
   
 RUN mkdir -p /var/lib/haproxy
   
-VOLUME /etc/letsencrypt
-VOLUME /etc/haproxy
-VOLUME /var/acme-webroot
+#VOLUME /etc/letsencrypt
+#VOLUME /etc/haproxy
+#VOLUME /var/acme-webroot
 
 ADD entrypoint.sh /
 RUN chmod +x /entrypoint.sh

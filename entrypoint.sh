@@ -42,11 +42,11 @@ print_config() {
 # so HAProxy can start with the default haproxy.cfg config without throwing errors.
 grep --silent -e "web.server" /etc/hosts || echo "$HAPROXY_HOST_IP web.server" >> /etc/hosts
 
-log $HAPROXY_CMD && print_config
+log $HAPROXY_CMD #&& print_config
 $HAPROXY_CHECK_CONFIG_CMD
 $HAPROXY_CMD
-# Exit immidiately in case of any errors or when we have interactive 
-if [[ $? != 0 ]] || echo $?;test -t 0; then exit $?; fi
+## Exit immidiately in case of any errors or when we have interactive 
+#if [[ $? != 0 ]] || echo $?;test -t 0; then exit $?; fi
 log "HAProxy started with $HAPROXY_CONFIG config, pid $(cat $HAPROXY_PID_FILE)." && log
 
 
