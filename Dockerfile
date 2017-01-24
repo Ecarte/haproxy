@@ -26,10 +26,11 @@ ADD haproxy.cfg /etc/haproxy/haproxy.cfg
 ADD supervisord.conf /etc/
 ADD entrypoint.sh /
 ADD cert-renewal-haproxy.sh /
-RUN chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh \
+  && chmod +x /cert-renewal-haproxy.sh \
 
 RUN touch crontab.tmp \
-    && echo '0 0 * * 0 /bin/bash cert-renewal-haproxy.sh' > crontab.tmp \
+    && echo '0 0 * * 0 /bin/bash /cert-renewal-haproxy.sh' > crontab.tmp \
     && crontab crontab.tmp \
     && rm -rf crontab.tmp
 
