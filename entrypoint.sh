@@ -54,7 +54,7 @@ log "HAProxy started with $HAPROXY_CONFIG config, pid $(cat $HAPROXY_PID_FILE)."
 # Note: also monitor /etc/hosts where the new back-end hosts might be provided.
 while inotifywait -q -e create,delete,modify,attrib $HAPROXY_CONFIG /etc/hosts /etc/haproxy; do
   if [ -f $HAPROXY_PID_FILE ]; then
-    log "Restarting HAProxy due to config changes..." && print_config
+    log "Restarting HAProxy due to config changes..." && #print_config
     $HAPROXY_CHECK_CONFIG_CMD
     $HAPROXY_CMD -sf $(cat $HAPROXY_PID_FILE)
     log "HAProxy restarted, pid $(cat $HAPROXY_PID_FILE)." && log
